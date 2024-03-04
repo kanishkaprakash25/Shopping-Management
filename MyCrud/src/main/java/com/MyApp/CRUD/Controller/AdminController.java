@@ -30,4 +30,11 @@ public class AdminController {
 	{
 		return service.addMultipleProducts(product);
 	}
+
+	@GetMapping("/deleteProductById")
+	public String deleteProduct(@RequestParam("id") int id)
+	{
+		return service.deleteProductById(id);
+	}
+	
 }
