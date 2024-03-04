@@ -124,7 +124,7 @@ public class ProductService implements ProductServicee{
 	public String deleteProductById(int id)
 	{
 		try {
-			repo.deleteById(id);
+			repo.remove(id);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
