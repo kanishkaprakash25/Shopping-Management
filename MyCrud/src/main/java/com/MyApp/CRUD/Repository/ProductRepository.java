@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
-
+import jakarta.transaction.Transactional;
 import com.MyApp.CRUD.Entity.Product;
 @Repository
 public interface ProductRepository extends JpaRepository<Product,Integer> {
@@ -17,6 +17,11 @@ public interface ProductRepository extends JpaRepository<Product,Integer> {
 	@Query("SELECT p FROM Product p WHERE p.type= :type ORDER BY p.name ASC")
 	public List<Product> getByType(@Param("type")String type);
 	
+	@Transactional
+	public void deleteProductById(@Param("id") int id);
+	
+	@Query("SELECT p FROM Product p WHERE p.id = :id")
+	public Product getById(@Param("id") int id);
 
 	@Query("SELECT p FROM Product p WHERE p.cost<= :maxCost ORDER BY p.cost ASC")
 	public List<Product> getByCostMax(@Param("maxCost")int maxCost);
